@@ -7,8 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @RequestMapping("test02")
-    public String test(){
+    public String test() {
         System.out.println("test method()......");
         return "test method()......";
+    }
+
+    @RequestMapping("test03")
+    public String test03() {
+        return "test03";
     }
 }
