@@ -7,11 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person {
-    private Integer pid;
-    private String pname;
-    private Integer page;
-    private String paddress;
-
-
+public class User {
+    private String name;
+    private String psw;
 }

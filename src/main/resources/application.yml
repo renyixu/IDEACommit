@@ -1,0 +1,75 @@
+spring:
+  port: 8080
+  datasource:
+    # 数据库访问配置, 使用druid数据源(默认数据源是HikariDataSource)
+    type: com.alibaba.druid.pool.DruidDataSource
+    #链接池配置
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: Pgmx0835@
+    druid:
+      aop-patterns: com.example.*  #监控SpringBean
+      filters: stat,wall     # 底层开启功能，stat（sql监控），wall（防火墙）
+
+      stat-view-servlet:   # 配置监控页功能
+        enabled: true
+        login-username: admin
+        login-password: admin
+        resetEnable: false
+
+      web-stat-filter:  # 监控web
+        enabled: true
+        urlPattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+
+      filter:
+        stat:    # 对上面filters里面的stat的详细配置
+          slow-sql-millis: 1000
+          logSlowSql: true
+          enabled: true
+        wall:
+          enabled: true
+          config:
+            drop-table-allow: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  redis:
+    host: 1.117.166.49
+    port: 6379
+    password:
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8888
+  # profile切换，把环境切换成test测试环境
+#  profiles:
+#    active: test
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+# SpringBoot Actuator监控
+#management:
+#  endpoints:
+#    #        enabled-by-default: true  #暴露所有端点信息
+#    enabled-by-default: false  #关闭暴露所有端点信息
+#    web:
+#      exposure:
+#        include: '*' #以web方式暴露
+#  endpoint:
+#    health:
+#      enabled: true
+#      show-details: always #总是显示详细信息。可显示每个模块的状态信息
+#    info:
+#      enabled: true
+#    metrics:
+#      enabled: true
+#
+#info:
+#  webName: SprintBootDemoProject
+#  webVersion: 1.0.1
+#  proGroupId: @project.groupId@ #可以使用@@从pom文件中获取对应的值
+#  proArtifactId: @artifactId@
